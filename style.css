@@ -38,7 +38,7 @@ body::before {
 }
 .container-nav a {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: #e4dbc4;
   font-weight: bold;
   text-decoration: none;
@@ -389,9 +389,7 @@ video {
 .card:hover video {
   pointer-events: auto;
 }
-.card.video-item{
-  
-}
+
 .card.video-item video {
   height: 100%;
   object-fit: cover;
@@ -483,7 +481,7 @@ video {
   background: #18442a;
 }
 .white-text {
-    color: #f3ede3;
+    color: #28a13a;
     font-size: 1.8rem;
     padding-bottom: 2px;
 }
@@ -496,13 +494,10 @@ video {
 }
 
 .footer{
-  backdrop-filter: blur(30px);
-    box-shadow: 0px 0px 30px rgb(227, 228, 237, );
-    border: 2px solid rgba(255, 255, 255, 0.18);
     padding: 4vh;
     margin-top: 20vw;
     width: 100%;
-    background: #18442a;
+    background: #385a3d;
 }
 .footer .contact{
    filter: invert(100%);
@@ -682,30 +677,5 @@ input[type="button"]:hover {
 
 /* RESPONSIVE */
 @media (max-width: 1080px) {
-    .container-title h2 {
-  font-size: 2rem;
-  color: #ecfae5;
-  font-weight: bold;
-  animation: fadeIn 3s forwards;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  word-break: break-word;
-}
-.container-title h4 {
-  margin-top: 20px;
-  font-size: 1.6rem;
-  color: #ecfae5;
-  font-weight: lighter;
-  width: 95%;
-  max-width: 95%;
-  box-sizing: border-box;
-  word-break: break-word;
-}
-  .container-title {
-    max-width: 98vw;
-    width: 100%;
-    margin: 200px auto 0 50px;
-    padding: 0 8px;
-  }
+    
 }
