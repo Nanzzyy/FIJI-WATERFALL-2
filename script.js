@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const showMoreBtn = document.getElementById("show-more-btn");
   const fotoItems = document.querySelectorAll("#gallery-foto .card");
   const videoItems = document.querySelectorAll("#gallery-video .card");
-  const showCount = 3;
+  const showCount = 4;
 
   let activeTab = "foto";
   let fotoShowingAll = false;
