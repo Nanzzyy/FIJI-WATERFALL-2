@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // Fungsi untuk menentukan jumlah card awal
   function getShowCount() {
     if (window.innerWidth <= 449) { // Very small devices
-      return 2;
+      return 3;
     } else if (window.innerWidth <= 767) { // Small tablets and large phones
       return 3;
     } else if (window.innerWidth <= 1080) { // Tablets and small laptops
@@ -172,3 +172,27 @@ document.addEventListener("DOMContentLoaded", function() {
   fotoContent.style.display = "block";
   videoContent.style.display = "none";
 });
+  // Slideshow untuk .home-desc di mobile
+  function startHomeDescSlideshow() {
+    // Hanya aktif di layar <= 768px
+    if (window.innerWidth > 768) {
+      // Reset: tampilkan semua gambar jika bukan mobile
+      document.querySelectorAll('.home-desc .slideshow-img').forEach(img => {
+        img.classList.add('active');
+      });
+      return;
+    }
+    const slides = document.querySelectorAll('.home-desc .slideshow-img');
+    if (slides.length <= 1) return;
+    let idx = 0;
+    slides.forEach((img, i) => img.classList.toggle('active', i === idx));
+    // Hapus interval sebelumnya jika ada
+    if (window.homeDescInterval) clearInterval(window.homeDescInterval);
+    window.homeDescInterval = setInterval(() => {
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+    }, 2500);
+  }
+  startHomeDescSlideshow();
+  window.addEventListener('resize', startHomeDescSlideshow);

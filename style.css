@@ -684,19 +684,22 @@ input[type="button"]:hover {
     
   }
   .container-nav img {
-    margin-left: 20px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    /* margin-left: 20px;
     padding-left: 0;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0; /* img tidak mengecil */
-    order: 1;
+    /* order: 1; */
   }
   .nav-links {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 12px;
     align-items: center;
     width: auto;
     flex: 1;
@@ -719,13 +722,13 @@ input[type="button"]:hover {
   }
   
   .container-title h2 {
-    font-size: 2.2rem;
+    font-size: 1.6rem;
     animation: fadeIn 2s forwards;
   }
   
   .container-title h4 {
-    margin-top: 10vh;
-    font-size: 1.2rem;
+    margin-top: 5vh;
+    font-size: 1.4rem;
     white-space: normal;
     border-right: none;
     animation: fadeIn 2s forwards;
@@ -733,13 +736,16 @@ input[type="button"]:hover {
   }
   
   /* Content */
+  .wrapper .toph2{
+    font-size: 1.6rem;
+  }
   .toph2{
     font-size: 1.2rem;
     text-align: center;
   } 
   .wrapper h2{
     text-align: center;
-    font-size: 1.6rem;
+    font-size: 1.35rem;
   }
   .white-text{
     font-size: 1.3rem;
@@ -753,13 +759,20 @@ input[type="button"]:hover {
   .home-desc p {
     font-size: 1.3rem;
   }
-  .home-desc img{
-    width: 180px;
-    height: 180px;
+   .home-desc .slideshow-img {
+    display: none;
+    width: 100%;
+    height: 250px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: #000000 0px 0px 10px;
+  }
+  .home-desc .slideshow-img.active {
+    display: block;
   }
   .home-desc .img-about{
-    width: 500px;
-    height: 300px;
+    width: 300px;
+    height: 200px;
     margin-top: 50px;
   }
   .wrapper2{
@@ -772,18 +785,21 @@ input[type="button"]:hover {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
   }
+  .gallery.show-all .card{
+    width: 200px;
+  }
   
   .card {
     height: 400px;
   }
   .card-s{
-    grid-row-end: span 20;
+    grid-row-end: span 19;
 }
 .card-m{
-    grid-row-end: span 21;
+    grid-row-end: span 17;
 }
 .card-l{
-    grid-row-end: span 22;
+    grid-row-end: span 18;
 }
   
   /* Footer */
@@ -796,18 +812,18 @@ input[type="button"]:hover {
     font-size: 1.1rem;
   }
   .row-img-span .information {
-    margin-left: 40px;
+    margin-left: 20px;
   }
   .row-img-span .contact {
-     margin-left: 40px;
+     margin-left: 20px;
   }
   .review-summary{
-  width: 95vw;
+  width: 90vw;
   max-width: 100%;
   box-sizing: border-box;
   }
   .review-item{
-    width: 91vw;
+    width: 84vw;
     max-width: 100%;
   }
   .footer p {
