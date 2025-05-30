@@ -831,6 +831,19 @@ input[type="button"]:hover {
     margin: 0 auto;
     display: block;
   }
+  .show-more-btn {
+    pointer-events: auto;
+    position: relative;
+    z-index: 100;
+  }
+  
+  .show-more-btn:active {
+    transform: scale(0.98);
+  }
+  
+  .card {
+    pointer-events: auto;
+  }
 }
 /* MOBILE NAV */
 @media (max-width: 768px) {

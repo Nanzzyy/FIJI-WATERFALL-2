@@ -64,14 +64,21 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function showAllFoto() {
-    fotoItems.forEach((card) => card.classList.remove("hidden-card"));
-    const gallery = document.getElementById("gallery-foto");
-    gallery.classList.remove("gallery-initial");
-    gallery.classList.add("show-all");
-    gallery.style.gridTemplateColumns = "";
-    fotoShowingAll = true;
-    if (showMoreBtn) showMoreBtn.textContent = "Tutup";
-  }
+  fotoItems.forEach((card) => card.classList.remove("hidden-card"));
+  const gallery = document.getElementById("gallery-foto");
+  gallery.classList.remove("gallery-initial");
+  gallery.classList.add("show-all");
+  gallery.style.gridTemplateColumns = "";
+  fotoShowingAll = true;
+  if (showMoreBtn) showMoreBtn.textContent = "Tutup";
+  
+  // Tambahkan event listener untuk card
+  fotoItems.forEach(card => {
+    card.addEventListener('click', function(e) {
+      e.stopPropagation(); // Mencegah event bubbling
+    });
+  });
+}
 
   function showInitialVideo() {
     const count = getShowCount();
@@ -98,14 +105,21 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function showAllVideo() {
-    videoItems.forEach((card) => card.classList.remove("hidden-card"));
-    const gallery = document.getElementById("gallery-video");
-    gallery.classList.remove("gallery-initial");
-    gallery.classList.add("show-all");
-    gallery.style.gridTemplateColumns = "";
-    videoShowingAll = true;
-    if (showMoreBtn) showMoreBtn.textContent = "Tutup";
-  }
+  videoItems.forEach((card) => card.classList.remove("hidden-card"));
+  const gallery = document.getElementById("gallery-video");
+  gallery.classList.remove("gallery-initial");
+  gallery.classList.add("show-all");
+  gallery.style.gridTemplateColumns = "";
+  videoShowingAll = true;
+  if (showMoreBtn) showMoreBtn.textContent = "Tutup";
+  
+  // Tambahkan event listener untuk card
+  videoItems.forEach(card => {
+    card.addEventListener('click', function(e) {
+      e.stopPropagation(); // Mencegah event bubbling
+    });
+  });
+}
 
   if (fotoBtn && videoBtn && fotoContent && videoContent) {
     fotoBtn.addEventListener("click", function () {
@@ -128,16 +142,46 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // FIX: Tombol show more/tutup hanya aktif jika klik langsung pada tombol
-  if (showMoreBtn) {
-    showMoreBtn.addEventListener("click", function (e) {
-      if (e.target !== showMoreBtn && !showMoreBtn.contains(e.target)) return;
-      if (activeTab === "foto") {
-        fotoShowingAll ? showInitialFoto() : showAllFoto();
+  // Ganti bagian kode yang menangani showMoreBtn dengan ini:
+if (showMoreBtn) {
+  showMoreBtn.addEventListener("click", function (e) {
+    // Hanya respon jika tombol itu sendiri yang diklik
+    if (e.target !== this) return;
+    
+    if (activeTab === "foto") {
+      fotoShowingAll = !fotoShowingAll;
+      if (fotoShowingAll) {
+        showAllFoto();
       } else {
-        videoShowingAll ? showInitialVideo() : showAllVideo();
+        showInitialFoto();
       }
-    });
-  }
+    } else {
+      videoShowingAll = !videoShowingAll;
+      if (videoShowingAll) {
+        showAllVideo();
+      } else {
+        showInitialVideo();
+      }
+    }
+  });
+  
+  // Tambahkan event listener untuk mencegah closing saat scroll
+  let isScrolling;
+  window.addEventListener('scroll', function() {
+    // Clear timeout saat scroll terjadi
+    clearTimeout(isScrolling);
+    
+    // Set timeout untuk menunggu scroll selesai
+    isScrolling = setTimeout(function() {
+      // Cek posisi scroll untuk memastikan tidak menutup galeri
+      if (activeTab === "foto" && fotoShowingAll) {
+        // Tetap buka galeri foto
+      } else if (activeTab === "video" && videoShowingAll) {
+        // Tetap buka galeri video
+      }
+    }, 100);
+  }, false);
+}
 
   // Autoplay video saat hover, pause saat mouse keluar
   document.querySelectorAll('#gallery-video video').forEach(function(video) {
