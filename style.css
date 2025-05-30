@@ -29,15 +29,34 @@ body::before {
   left: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* logo kiri, nav tengah */
   background: rgba(0, 0, 0, 0.7);
   border-radius: 0 0 0.5vh 0.5vh;
   height: 100px;
   width: 100%;
   z-index: 1000;
-  padding-left: 32px;
+  padding: 0 32px;
   gap: 50px;
   animation: fadeIn 3s forwards;
+}
+.container-nav img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-right: 16px;
+  margin-left: 0;
+  padding-left: 0;
+  position: relative;
+  z-index: 1;
+}
+.nav-links {
+  position: static;
+  transform: none;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
 }
 .container-nav a {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -47,35 +66,15 @@ body::before {
   text-decoration: none;
   transition: color 0.3s, transform 0.3s;
 }
-.container-nav a:hover {
+.container-nav a:hover,
+.container-nav a.active {
+  color: #ffd600;
   text-decoration: underline;
-  transform: scale(1.05);
-  color: #f3ede3;
-  cursor: pointer;
 }
-.container-nav img {
-   align-items: right;
-  justify-content: right;
-  width:70px;
-  height: 70px;
-  border-radius: 50%;
-  transition: transform 0.3s;
-  padding-left: 24px;
-  position: relative;
-  z-index: 1;
-  margin-left: 300px;
-  padding-left: 0px;
+.nav-toggle {
+  display: none;
 }
 
-.nav-links {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  gap: 32px;
-  align-items: center;
-}
 .hero {
   display: flex;
   flex-direction: column;
@@ -669,42 +668,11 @@ input[type="button"]:hover {
 
 /* Tablet Landscape (768px - 1080px) */
 @media (max-width: 768px){
-   /* Navigation */
-  .container-nav {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* img di kiri, nav-links di kanan */
-    gap: 0;
+  #gallery {
+  scroll-margin-top: 120px; /* Sesuaikan dengan tinggi navbar */
+}
+  .container-nav.scrolled{
     height: 80px;
-    padding: 0 20px;
-  }
-  .container-nav a{
-    font-size: 1rem;
-    white-space: nowrap;
-    
-  }
-  .container-nav img {
-    width: 0;
-    height: 0;
-    opacity: 0;
-    /* margin-left: 20px;
-    padding-left: 0;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0; /* img tidak mengecil */
-    /* order: 1; */
-  }
-  .nav-links {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    align-items: center;
-    width: auto;
-    flex: 1;
-    justify-content: flex-start;
-    order: 2;
   }
   
   /* Hero Section */
@@ -740,7 +708,7 @@ input[type="button"]:hover {
     font-size: 1.6rem;
   }
   .toph2{
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     text-align: center;
   } 
   .wrapper h2{
@@ -757,7 +725,7 @@ input[type="button"]:hover {
   }
   
   .home-desc p {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
    .home-desc .slideshow-img {
     display: none;
@@ -776,7 +744,7 @@ input[type="button"]:hover {
     margin-top: 50px;
   }
   .wrapper2{
-    margin-top: 100px;
+    top: 100px;
     animation: fadeInUp 2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
   }
   
@@ -786,11 +754,11 @@ input[type="button"]:hover {
     gap: 15px;
   }
   .gallery.show-all .card{
-    width: 200px;
+    width: 180px;
   }
   
   .card {
-    height: 400px;
+    height: 350px;
   }
   .card-s{
     grid-row-end: span 19;
@@ -831,5 +799,61 @@ input[type="button"]:hover {
     width: 100%;
     margin: 0 auto;
     display: block;
+  }
+}
+/* MOBILE NAV */
+@media (max-width: 768px) {
+  .container-nav {
+    height: 60px;
+    padding: 0 20px;
+    justify-content: space-between;
+  }
+  .container-nav img {
+    width: 36px;
+    height: 36px;
+    margin-right: 8px;
+  }
+  .nav-toggle {
+    display: block !important;
+    background: none;
+    border: none;
+    color: #e4dbc4;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1101;
+  }
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 20px 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+  .nav-links.show {
+    transform: translateX(0);
+  }
+  .nav-links a {
+    padding: 15px 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #e4dbc4;
+    background: none;
+    border: none;
+    transition: background 0.2s;
+    display: block;
+  }
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: #51925b;
+    color: #fff;
   }
 }

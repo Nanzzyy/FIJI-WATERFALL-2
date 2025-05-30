@@ -196,3 +196,92 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   startHomeDescSlideshow();
   window.addEventListener('resize', startHomeDescSlideshow);
+  // ...existing code...
+
+// Scroll Spy: Highlight nav menu sesuai section yang sedang tampil
+// Scroll Spy: Highlight nav menu sesuai section yang sedang tampil
+function setActiveNav() {
+  const sections = [
+    { id: "home", nav: "Home" },
+    { id: "about", nav: "About" },
+    { id: "gallery", nav: "Gallery" }, // Pastikan ID sesuai dengan HTML
+    { id: "contact", nav: "Information & Contact" }
+  ];
+  
+  let scrollPos = window.scrollY + 100; // offset navbar
+  let active = "Home";
+  
+  for (let i = 0; i < sections.length; i++) {
+    const el = document.getElementById(sections[i].id);
+    if (!el) continue;
+    
+    const elTop = el.offsetTop;
+    const elHeight = el.offsetHeight;
+    const elBottom = elTop + elHeight;
+    
+    // Perhitungan yang lebih akurat dengan threshold
+    if (scrollPos >= elTop - 150 && scrollPos <= elBottom - 100) {
+      active = sections[i].nav;
+      break;
+    }
+  }
+  
+  document.querySelectorAll('.container-nav a').forEach(a => {
+    a.classList.toggle('active', a.textContent.trim() === active);
+  });
+}
+
+window.addEventListener('scroll', setActiveNav);
+window.addEventListener('DOMContentLoaded', setActiveNav);
+
+// Smooth scroll untuk nav
+document.querySelectorAll('.container-nav a').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const targetId = this.getAttribute('href').substring(1);
+    if (targetId && document.getElementById(targetId)) {
+      e.preventDefault();
+      const target = document.getElementById(targetId);
+      const offset = 100; // Sesuaikan dengan tinggi navbar
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth"
+      });
+    }
+  });
+});
+// Hamburger menu logic
+document.addEventListener('DOMContentLoaded', function() {
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', function() {
+      navLinks.classList.toggle('show');
+    });
+    // Tutup menu jika salah satu link diklik
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          navLinks.classList.remove('show');
+        }
+      });
+    });
+  }
+});
+document.addEventListener("DOMContentLoaded", function() {
+  // ...semua kode inisialisasi lain di sini...
+
+  // Smooth scroll untuk tombol input type button
+  const jelajahBtn = document.querySelector('input[type="button"][value="Jelajahi Sekarang"]');
+  if (jelajahBtn) {
+    jelajahBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.getElementById('about');
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  }
+
+}); // <--- pastikan sebelum penutup ini
