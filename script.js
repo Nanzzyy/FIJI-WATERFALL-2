@@ -6,17 +6,6 @@ document.addEventListener("DOMContentLoaded", function() {
       if (entry.isIntersecting) {
         entry.target.classList.add('pop-up-animate');
       }
-      window.addEventListener('scroll', () => {
-        const nav = document.querySelector('.container-nav');
-        const hero = document.querySelector('.hero');
-        const heroBottom = hero.offsetTop + hero.offsetHeight;
-
-        if (window.scrollY > heroBottom - 100) {
-          nav.classList.add('scrolled');
-        } else {
-          nav.classList.remove('scrolled');
-        }
-      });
     });
   }, { threshold: 0.3 });
 
@@ -39,13 +28,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Fungsi untuk menentukan jumlah card awal
   function getShowCount() {
-    if (window.innerWidth <= 449) { // Very small devices
+    if (window.innerWidth <= 449) {
       return 3;
-    } else if (window.innerWidth <= 767) { // Small tablets and large phones
+    } else if (window.innerWidth <= 767) {
       return 3;
-    } else if (window.innerWidth <= 1080) { // Tablets and small laptops
+    } else if (window.innerWidth <= 1080) {
       return 4;
-    } else { // Desktop
+    } else {
       return 3;
     }
   }
@@ -56,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function() {
       card.classList.toggle("hidden-card", idx >= count);
     });
 
-    // Atur grid layout berdasarkan ukuran layar
     const gallery = document.getElementById("gallery-foto");
     gallery.classList.add("gallery-initial");
     gallery.classList.remove("show-all");
@@ -72,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     fotoShowingAll = false;
-    showMoreBtn.textContent = "Lihat Selengkapnya";
+    if (showMoreBtn) showMoreBtn.textContent = "Lihat Selengkapnya";
   }
 
   function showAllFoto() {
@@ -80,9 +68,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const gallery = document.getElementById("gallery-foto");
     gallery.classList.remove("gallery-initial");
     gallery.classList.add("show-all");
-    gallery.style.gridTemplateColumns = ""; // reset ke CSS default
+    gallery.style.gridTemplateColumns = "";
     fotoShowingAll = true;
-    showMoreBtn.textContent = "Tutup";
+    if (showMoreBtn) showMoreBtn.textContent = "Tutup";
   }
 
   function showInitialVideo() {
@@ -91,7 +79,6 @@ document.addEventListener("DOMContentLoaded", function() {
       card.classList.toggle("hidden-card", idx >= count);
     });
 
-    // Atur grid layout berdasarkan ukuran layar
     const gallery = document.getElementById("gallery-video");
     gallery.classList.add("gallery-initial");
     gallery.classList.remove("show-all");
@@ -107,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     videoShowingAll = false;
-    showMoreBtn.textContent = "Lihat Selengkapnya";
+    if (showMoreBtn) showMoreBtn.textContent = "Lihat Selengkapnya";
   }
 
   function showAllVideo() {
@@ -115,36 +102,40 @@ document.addEventListener("DOMContentLoaded", function() {
     const gallery = document.getElementById("gallery-video");
     gallery.classList.remove("gallery-initial");
     gallery.classList.add("show-all");
-    gallery.style.gridTemplateColumns = ""; // reset ke CSS default
+    gallery.style.gridTemplateColumns = "";
     videoShowingAll = true;
-    showMoreBtn.textContent = "Tutup";
+    if (showMoreBtn) showMoreBtn.textContent = "Tutup";
   }
 
-  fotoBtn.addEventListener("click", function () {
-    fotoBtn.classList.add("active");
-    videoBtn.classList.remove("active");
-    fotoContent.style.display = "block";
-    videoContent.style.display = "none";
-    activeTab = "foto";
-    fotoShowingAll ? showAllFoto() : showInitialFoto();
-  });
+  if (fotoBtn && videoBtn && fotoContent && videoContent) {
+    fotoBtn.addEventListener("click", function () {
+      fotoBtn.classList.add("active");
+      videoBtn.classList.remove("active");
+      fotoContent.style.display = "block";
+      videoContent.style.display = "none";
+      activeTab = "foto";
+      fotoShowingAll ? showAllFoto() : showInitialFoto();
+    });
 
-  videoBtn.addEventListener("click", function () {
-    videoBtn.classList.add("active");
-    fotoBtn.classList.remove("active");
-    fotoContent.style.display = "none";
-    videoContent.style.display = "block";
-    activeTab = "video";
-    videoShowingAll ? showAllVideo() : showInitialVideo();
-  });
+    videoBtn.addEventListener("click", function () {
+      videoBtn.classList.add("active");
+      fotoBtn.classList.remove("active");
+      fotoContent.style.display = "none";
+      videoContent.style.display = "block";
+      activeTab = "video";
+      videoShowingAll ? showAllVideo() : showInitialVideo();
+    });
+  }
 
-  showMoreBtn.addEventListener("click", function () {
-    if (activeTab === "foto") {
-      fotoShowingAll ? showInitialFoto() : showAllFoto();
-    } else {
-      videoShowingAll ? showInitialVideo() : showAllVideo();
-    }
-  });
+  if (showMoreBtn) {
+    showMoreBtn.addEventListener("click", function () {
+      if (activeTab === "foto") {
+        fotoShowingAll ? showInitialFoto() : showAllFoto();
+      } else {
+        videoShowingAll ? showInitialVideo() : showAllVideo();
+      }
+    });
+  }
 
   // Autoplay video saat hover, pause saat mouse keluar
   document.querySelectorAll('#gallery-video video').forEach(function(video) {
@@ -169,14 +160,12 @@ document.addEventListener("DOMContentLoaded", function() {
   // Inisialisasi tampilan awal
   showInitialFoto();
   showInitialVideo();
-  fotoContent.style.display = "block";
-  videoContent.style.display = "none";
-});
+  if (fotoContent) fotoContent.style.display = "block";
+  if (videoContent) videoContent.style.display = "none";
+
   // Slideshow untuk .home-desc di mobile
   function startHomeDescSlideshow() {
-    // Hanya aktif di layar <= 768px
     if (window.innerWidth > 768) {
-      // Reset: tampilkan semua gambar jika bukan mobile
       document.querySelectorAll('.home-desc .slideshow-img').forEach(img => {
         img.classList.add('active');
       });
@@ -186,7 +175,6 @@ document.addEventListener("DOMContentLoaded", function() {
     if (slides.length <= 1) return;
     let idx = 0;
     slides.forEach((img, i) => img.classList.toggle('active', i === idx));
-    // Hapus interval sebelumnya jika ada
     if (window.homeDescInterval) clearInterval(window.homeDescInterval);
     window.homeDescInterval = setInterval(() => {
       slides[idx].classList.remove('active');
@@ -196,70 +184,63 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   startHomeDescSlideshow();
   window.addEventListener('resize', startHomeDescSlideshow);
-  // ...existing code...
 
-// Scroll Spy: Highlight nav menu sesuai section yang sedang tampil
-// Scroll Spy: Highlight nav menu sesuai section yang sedang tampil
-function setActiveNav() {
-  const sections = [
-    { id: "home", nav: "Home" },
-    { id: "about", nav: "About" },
-    { id: "gallery", nav: "Gallery" }, // Pastikan ID sesuai dengan HTML
-    { id: "contact", nav: "Information & Contact" }
-  ];
-  
-  let scrollPos = window.scrollY + 100; // offset navbar
-  let active = "Home";
-  
-  for (let i = 0; i < sections.length; i++) {
-    const el = document.getElementById(sections[i].id);
-    if (!el) continue;
-    
-    const elTop = el.offsetTop;
-    const elHeight = el.offsetHeight;
-    const elBottom = elTop + elHeight;
-    
-    // Perhitungan yang lebih akurat dengan threshold
-    if (scrollPos >= elTop - 150 && scrollPos <= elBottom - 100) {
-      active = sections[i].nav;
-      break;
+  // Scroll Spy: Highlight nav menu sesuai section yang sedang tampil
+  function setActiveNav() {
+    const sections = [
+      { id: "home", nav: "Home" },
+      { id: "about", nav: "About" },
+      { id: "gallery-title", nav: "Gallery" },
+      { id: "contact", nav: "Information & Contact" }
+    ];
+    let scrollPos = window.scrollY + 120; // offset nav height
+    let active = "Home";
+    for (let i = 0; i < sections.length; i++) {
+      const el = document.getElementById(sections[i].id);
+      if (el && el.offsetTop <= scrollPos) {
+        active = sections[i].nav;
+      }
     }
+    document.querySelectorAll('.container-nav a').forEach(a => {
+      if (a.textContent.trim() === active) {
+        a.classList.add('active');
+      } else {
+        a.classList.remove('active');
+      }
+    });
   }
-  
+  window.addEventListener('scroll', setActiveNav);
+  window.addEventListener('DOMContentLoaded', setActiveNav);
+
+  // Smooth scroll untuk nav
   document.querySelectorAll('.container-nav a').forEach(a => {
-    a.classList.toggle('active', a.textContent.trim() === active);
+    a.addEventListener('click', function(e) {
+      const text = a.textContent.trim();
+      let targetId = "";
+      if (text === "Home") targetId = "home";
+      else if (text === "About") targetId = "about";
+      else if (text === "Gallery") targetId = "gallery-title";
+      else if (text === "Information & Contact") targetId = "contact";
+      if (targetId && document.getElementById(targetId)) {
+        e.preventDefault();
+        const target = document.getElementById(targetId);
+        const offset = 120;
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth"
+        });
+      }
+    });
   });
-}
 
-window.addEventListener('scroll', setActiveNav);
-window.addEventListener('DOMContentLoaded', setActiveNav);
-
-// Smooth scroll untuk nav
-document.querySelectorAll('.container-nav a').forEach(a => {
-  a.addEventListener('click', function(e) {
-    const targetId = this.getAttribute('href').substring(1);
-    if (targetId && document.getElementById(targetId)) {
-      e.preventDefault();
-      const target = document.getElementById(targetId);
-      const offset = 100; // Sesuaikan dengan tinggi navbar
-      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-      
-      window.scrollTo({
-        top: targetPosition,
-        behavior: "smooth"
-      });
-    }
-  });
-});
-// Hamburger menu logic
-document.addEventListener('DOMContentLoaded', function() {
+  // Hamburger menu logic
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks = document.querySelector('.nav-links');
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', function() {
       navLinks.classList.toggle('show');
     });
-    // Tutup menu jika salah satu link diklik
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         if (window.innerWidth <= 768) {
@@ -268,9 +249,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   }
-});
-document.addEventListener("DOMContentLoaded", function() {
-  // ...semua kode inisialisasi lain di sini...
 
   // Smooth scroll untuk tombol input type button
   const jelajahBtn = document.querySelector('input[type="button"][value="Jelajahi Sekarang"]');
@@ -283,5 +261,4 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   }
-
-}); // <--- pastikan sebelum penutup ini
+});

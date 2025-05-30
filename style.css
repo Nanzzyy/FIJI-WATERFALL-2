@@ -69,7 +69,7 @@ body::before {
 }
 .container-nav a:hover,
 .container-nav a.active {
-  color: #ffd600;
+  color: #51925b;
   text-decoration: underline;
 }
 .nav-toggle {
@@ -783,13 +783,13 @@ input[type="button"]:hover {
     height: 350px;
   }
   .card-s {
-    grid-row-end: span 19;
+    grid-row-end: span 21;
   }
   .card-m {
-    grid-row-end: span 17;
+    grid-row-end: span 20;
   }
   .card-l {
-    grid-row-end: span 18;
+    grid-row-end: span 21;
   }
 
   /* Footer */
@@ -802,9 +802,13 @@ input[type="button"]:hover {
     font-size: 1.1rem;
   }
   .row-img-span .information {
+      width: 30px;
+    height: 30px;
     margin-left: 20px;
   }
   .row-img-span .contact {
+      width: 30px;
+    height: 30px;
     margin-left: 20px;
   }
   .review-summary {
