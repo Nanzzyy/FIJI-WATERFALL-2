@@ -685,13 +685,18 @@ input[type="button"]:hover {
 
 /* Tablet Landscape (768px - 1080px) */
 @media (max-width: 768px) {
+  html, body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
   #gallery {
     scroll-margin-top: 120px; /* Sesuaikan dengan tinggi navbar */
   }
   .container-nav.scrolled {
     height: 80px;
   }
-
   /* Hero Section */
   .hero {
     min-height: 100vh;
