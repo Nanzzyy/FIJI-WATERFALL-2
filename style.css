@@ -742,6 +742,7 @@ input[type="button"]:hover {
 
   .home-desc p {
     font-size: 1.2rem;
+    font-weight: light;
   }
   .home-desc .slideshow-img {
     display: none;
