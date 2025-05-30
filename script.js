@@ -127,17 +127,17 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+  // FIX: Tombol show more/tutup hanya aktif jika klik langsung pada tombol
   if (showMoreBtn) {
-  showMoreBtn.addEventListener("click", function (e) {
-    // Pastikan yang diklik benar-benar tombol, bukan bubbling dari card/foto/video
-    if (e.target !== showMoreBtn) return;
-    if (activeTab === "foto") {
-      fotoShowingAll ? showInitialFoto() : showAllFoto();
-    } else {
-      videoShowingAll ? showInitialVideo() : showAllVideo();
-    }
-  });
-}
+    showMoreBtn.addEventListener("click", function (e) {
+      if (e.target !== showMoreBtn && !showMoreBtn.contains(e.target)) return;
+      if (activeTab === "foto") {
+        fotoShowingAll ? showInitialFoto() : showAllFoto();
+      } else {
+        videoShowingAll ? showInitialVideo() : showAllVideo();
+      }
+    });
+  }
 
   // Autoplay video saat hover, pause saat mouse keluar
   document.querySelectorAll('#gallery-video video').forEach(function(video) {
@@ -153,9 +153,9 @@ document.addEventListener("DOMContentLoaded", function() {
   // Event listener untuk resize agar jumlah card awal dan grid layout menyesuaikan layar
   window.addEventListener('resize', function() {
     if (activeTab === "foto") {
-      showInitialFoto();
+      if (!fotoShowingAll) showInitialFoto();
     } else {
-      showInitialVideo();
+      if (!videoShowingAll) showInitialVideo();
     }
   });
 
