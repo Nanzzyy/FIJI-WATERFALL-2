@@ -128,14 +128,16 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   if (showMoreBtn) {
-    showMoreBtn.addEventListener("click", function () {
-      if (activeTab === "foto") {
-        fotoShowingAll ? showInitialFoto() : showAllFoto();
-      } else {
-        videoShowingAll ? showInitialVideo() : showAllVideo();
-      }
-    });
-  }
+  showMoreBtn.addEventListener("click", function (e) {
+    // Pastikan yang diklik benar-benar tombol, bukan bubbling dari card/foto/video
+    if (e.target !== showMoreBtn) return;
+    if (activeTab === "foto") {
+      fotoShowingAll ? showInitialFoto() : showAllFoto();
+    } else {
+      videoShowingAll ? showInitialVideo() : showAllVideo();
+    }
+  });
+}
 
   // Autoplay video saat hover, pause saat mouse keluar
   document.querySelectorAll('#gallery-video video').forEach(function(video) {
