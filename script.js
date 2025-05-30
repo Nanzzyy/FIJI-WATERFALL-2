@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
   // Animasi pop-up untuk .home-desc, .wrapper h2, #gallery-title
-  const targets = document.querySelectorAll('.home-desc, .wrapper h2, #gallery-title, .wrapper');
+  const targets = document.querySelectorAll('.home-desc, .wrapper h2, #gallery-title, .wrapper, .wrappper2');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
