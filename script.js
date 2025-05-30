@@ -233,52 +233,55 @@ if (showMoreBtn) {
 
   // Scroll Spy: Highlight nav menu sesuai section yang sedang tampil
   function setActiveNav() {
-    const sections = [
-      { id: "home", nav: "Home" },
-      { id: "about", nav: "About" },
-      { id: "gallery-title", nav: "Gallery" },
-      { id: "contact", nav: "Information & Contact" }
-    ];
-    let scrollPos = window.scrollY + 120; // offset nav height
-    let active = "Home";
-    for (let i = 0; i < sections.length; i++) {
-      const el = document.getElementById(sections[i].id);
-      if (el && el.offsetTop <= scrollPos) {
-        active = sections[i].nav;
-      }
+  const sections = [
+    { id: "home", nav: "Home" },
+    { id: "about", nav: "About" },
+    { id: "gallery", nav: "Gallery" }, // Pastikan ID sesuai dengan HTML
+    { id: "contact", nav: "Information & Contact" }
+  ];
+  
+  let scrollPos = window.scrollY + 100; // offset navbar
+  let active = "Home";
+  
+  for (let i = 0; i < sections.length; i++) {
+    const el = document.getElementById(sections[i].id);
+    if (!el) continue;
+    
+    const elTop = el.offsetTop;
+    const elHeight = el.offsetHeight;
+    const elBottom = elTop + elHeight;
+    
+    // Perhitungan yang lebih akurat dengan threshold
+    if (scrollPos >= elTop - 150 && scrollPos <= elBottom - 100) {
+      active = sections[i].nav;
+      break;
     }
-    document.querySelectorAll('.container-nav a').forEach(a => {
-      if (a.textContent.trim() === active) {
-        a.classList.add('active');
-      } else {
-        a.classList.remove('active');
-      }
-    });
   }
+  
+  document.querySelectorAll('.container-nav a').forEach(a => {
+    a.classList.toggle('active', a.textContent.trim() === active);
+  });
+}
   window.addEventListener('scroll', setActiveNav);
   window.addEventListener('DOMContentLoaded', setActiveNav);
 
   // Smooth scroll untuk nav
-  document.querySelectorAll('.container-nav a').forEach(a => {
-    a.addEventListener('click', function(e) {
-      const text = a.textContent.trim();
-      let targetId = "";
-      if (text === "Home") targetId = "home";
-      else if (text === "About") targetId = "about";
-      else if (text === "Gallery") targetId = "gallery-title";
-      else if (text === "Information & Contact") targetId = "contact";
-      if (targetId && document.getElementById(targetId)) {
-        e.preventDefault();
-        const target = document.getElementById(targetId);
-        const offset = 120;
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth"
-        });
-      }
-    });
+document.querySelectorAll('.container-nav a').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const targetId = this.getAttribute('href').substring(1);
+    if (targetId && document.getElementById(targetId)) {
+      e.preventDefault();
+      const target = document.getElementById(targetId);
+      const offset = 100; // Sesuaikan dengan tinggi navbar
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth"
+      });
+    }
   });
+});
 
   // Hamburger menu logic
   const navToggle = document.querySelector('.nav-toggle');
