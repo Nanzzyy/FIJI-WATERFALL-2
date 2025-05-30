@@ -880,5 +880,6 @@ input[type="button"]:hover {
   .nav-links a.active {
     background: #51925b;
     color: #fff;
+    text-decoration: none;
   }
 }
