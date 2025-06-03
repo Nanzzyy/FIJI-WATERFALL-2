@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif, "Open Sans";
+  font-family:  'Poppins', 'Open Sans', Arial, sans-serif;
   color: #e4dbc4;
   background: #45644a;
 }
@@ -121,8 +121,8 @@ body::before {
   font-size: 2rem;
   color: #f3ede3;
   font-weight: lighter;
-  width: 95%;
-  max-width: 95%;
+  width: 85%;
+  max-width: 85%;
   box-sizing: border-box;
   word-break: break-word;
 }
@@ -752,9 +752,10 @@ input[type="button"]:hover {
   }
   .home-desc .slideshow-img {
     display: none;
-    width: 100%;
+    width: 60vw;
     height: 250px;
     margin: 0 auto;
+    margin-top: 30px;
     border-radius: 10px;
     box-shadow: #000000 0px 0px 10px;
   }
@@ -768,7 +769,7 @@ input[type="button"]:hover {
   }
   .home-desc .img-about {
     width: 300px;
-    height: 200px;
+    height: 250px;
     margin-top: 50px;
   }
   .wrapper2 {
