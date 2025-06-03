@@ -121,8 +121,8 @@ body::before {
   font-size: 2rem;
   color: #f3ede3;
   font-weight: lighter;
-  width: 85%;
-  max-width: 85%;
+  width: 80%;
+  max-width: 68%;
   box-sizing: border-box;
   word-break: break-word;
 }
