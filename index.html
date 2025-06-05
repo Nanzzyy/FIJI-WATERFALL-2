@@ -1,359 +1,397 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="id">
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FIJI WATERFALL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Poppins:wght@400;700&display=swap"/>
+    <title>Fiji Waterfall - Surga Tersembunyi Bali Utara</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="hero" id="home">
-      <div class="container-nav">
-        <img src="img/logo.png" alt="" />
-        <button class="nav-toggle" aria-label="Menu">&#9776;</button>
-        <div class="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#gallery-title">Gallery</a>
-          <a href="#contact">Information & Contact</a>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#home" class="logo">
+                <img src="img/logo.png" alt="Fiji Waterfall Logo">
+                <span>Fiji Waterfall</span>
+            </a>
+            
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Beranda</a></li>
+                    <li><a href="#about" class="nav-link">Tentang</a></li>
+                    <li><a href="#gallery" class="nav-link">Galeri</a></li>
+                    <li><a href="#contact" class="nav-link">Kontak</a></li>
+                </ul>
+                
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
         </div>
-      </div>
-      <!-- <div class="line"></div> -->
+    </header>
 
-      <div class="container-title">
-        <h2>Fiji Waterfall - Permata Tersembunyi di Lemukih</h2>
-        <h4 class="typing-effect">
-          “Selamat datang di surga tersembunyi Bali Utara – Air Terjun Fiji,
-          Lemukih.”
-        </h4>
-        <a href="#about"><input type="button" value="Jelajahi Sekarang" /></a>
-      </div>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Fiji Waterfall</h1>
+                    <p class="hero-subtitle">Permata tersembunyi di Desa Lemukih, Bali Utara</p>
+                    <a href="#about" class="btn btn-primary">Jelajahi Sekarang</a>
+                </div>
+                
+                <div class="scroll-down">
+                    <span>Scroll ke bawah</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section about" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Tentang Air Terjun Fiji</h2>
+                    <p class="section-subtitle">Temukan keindahan alam yang masih alami</p>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Terletak di <strong>Desa Lemukih, Kabupaten Buleleng</strong>, Air Terjun Fiji adalah salah satu destinasi wisata alam yang masih alami dan belum terlalu ramai dikunjungi wisatawan.</p>
+                        <p>Dikelilingi oleh pepohonan tropis dan hamparan sawah yang hijau, perjalanan menuju lokasi ini menawarkan pengalaman trekking yang menenangkan sekaligus menantang.</p>
+                    </div>
+                    
+                    <div class="about-image">
+                        <div class="image-slider">
+                            <img src="img/About1.webp" alt="Air Terjun Fiji" class="active">
+                            <img src="img/About2.webp" alt="Pemandangan Air Terjun Fiji">
+                            <img src="img/About3.webp" alt="Aliran Air Terjun Fiji">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <h3>Tiga Aliran Air</h3>
+                        <p>Tiga aliran air terjun yang mengalir sejajar menciptakan pemandangan luar biasa</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Udara Segar</h3>
+                        <p>Suasana tenang dan udara segar yang terasa murni</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Tempat Healing</h3>
+                        <p>Tempat ideal untuk melepas penat dan mendekatkan diri dengan alam</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="section gallery" id="gallery">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Galeri Air Terjun Fiji</h2>
+                    <p class="section-subtitle">Kumpulan momen indah di Air Terjun Fiji</p>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="gallery-tabs">
+                    <button class="tab-btn active" data-tab="foto">Foto</button>
+                    <button class="tab-btn" data-tab="video">Video</button>
+                </div>
+                
+                <div class="gallery-content">
+                    <div class="tab-content active" id="foto">
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="img/About4.jpg" alt="Air Terjun Fiji">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="img/About10.jpg" alt="Air Terjun Fiji">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="img/About6.webp" alt="Air Terjun Fiji">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="img/About1.webp" alt="Air Terjun Fiji">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="img/About2.webp" alt="Air Terjun Fiji">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="img/About3.webp" alt="Air Terjun Fiji">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="img/About5.webp" alt="Air Terjun Fiji">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="img/About8.jpeg" alt="Air Terjun Fiji">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="img/About9.jpg" alt="Air Terjun Fiji">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="video">
+                        <div class="gallery-grid">
+                            <div class="gallery-item video-item">
+                                <video muted loop playsinline>
+                                    <source src="video/video1.mp4" type="video/mp4">
+                                </video>
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item video-item">
+                                <video muted loop playsinline>
+                                    <source src="video/video2.mp4" type="video/mp4">
+                                </video>
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item video-item">
+                                <video muted loop playsinline>
+                                    <source src="video/video3.mp4" type="video/mp4">
+                                </video>
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item video-item">
+                                <video muted loop playsinline>
+                                    <source src="video/video4.mp4" type="video/mp4">
+                                </video>
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item video-item">
+                                <video muted loop playsinline>
+                                    <source src="video/video5.mp4" type="video/mp4">
+                                </video>
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                            <div class="gallery-item video-item">
+                                <video muted loop playsinline>
+                                    <source src="video/video6.mp4" type="video/mp4">
+                                </video>
+                                <div class="gallery-overlay">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-outline" id="load-more">Muat Lebih Banyak</button>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Apa Kata Pengunjung?</h2>
+                    <p class="section-subtitle">Testimonial dari mereka yang sudah berkunjung</p>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="testimonial-slider">
+                    <div class="testimonial-card active">
+                        <div class="testimonial-header">
+                            <div class="user-rating">
+                                <span class="stars">★★★★★</span>
+                            </div>
+                            <h3 class="user-name">Herik Andika</h3>
+                        </div>
+                        <p class="testimonial-text">Tempatnya Bagus,, rekomended,, karena dalam satu tempat ada beberapa waterfall sekaligus dan bagus2,, Tp ada beberapa oknum yg saya tidak suka, kita sampainya dsana malah di bilang harus ada pendamping dan diminta harga yg cukup besar.</p>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="user-rating">
+                                <span class="stars">★★★★★</span>
+                            </div>
+                            <h3 class="user-name">Viktoriya Nischuk</h3>
+                        </div>
+                        <p class="testimonial-text">Beautiful and strong waterfall - it's actually tree waterfalls really close to each other. They look magical!</p>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="user-rating">
+                                <span class="stars">★★★★★</span>
+                            </div>
+                            <h3 class="user-name">Anton Palichev</h3>
+                        </div>
+                        <p class="testimonial-text">The most beautiful waterfall on Bali! Stay for a night at local hotel/hostel and get a tickets (protection) from them. Simple</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-controls">
+                    <button class="control-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <div class="testimonial-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="control-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section contact" id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Informasi & Kontak</h2>
+                    <p class="section-subtitle">Kunjungi Air Terjun Fiji sekarang juga</p>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-text">
+                                <h3>Lokasi</h3>
+                                <p>R59J+RJ, Sudaji, Sawan, Buleleng Regency, Bali</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="info-text">
+                                <h3>Telepon</h3>
+                                <p>082266481833</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-text">
+                                <h3>Email</h3>
+                                <p>lemukih-buleleng@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.2212220801!2d115.17899034081489!3d-8.180455891884751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd18f921139190b%3A0xddf0c37a51e73ad8!2sFiji%20Waterfall%20Lemukih!5e0!3m2!1sen!2sid!4v1748028155898!5m2!1sen!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="logo">
+                        <img src="img/logo.png" alt="Fiji Waterfall Logo">
+                        <span>Fiji Waterfall</span>
+                    </a>
+                    <p>Surga tersembunyi di Bali Utara dengan tiga aliran air terjun yang memesona.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#about">Tentang</a></li>
+                        <li><a href="#gallery">Galeri</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Hubungi Kami</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Desa Lemukih, Buleleng, Bali</li>
+                        <li><i class="fas fa-phone-alt"></i> 082266481833</li>
+                        <li><i class="fas fa-envelope"></i> lemukih-buleleng@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Air Terjun Fiji. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for image gallery -->
+    <div class="modal" id="image-modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modal-image">
+        <div class="modal-caption"></div>
     </div>
-    <div class="wrapper" id="about">
-      <div class="space"></div>
-      <h2>Selamat Datang di Air Terjun Fiji</h2>
-      <h2 class="toph2">Permata Tersembunyi dari Lemukih, Bali Utara</h2>
-      <div class="home-desc">
-        <div class="container-home">
-          <img class="slideshow-img active" src="img/About1.webp" alt="" />
-          <img class="slideshow-img" src="img/About2.webp" alt="" />
-          <img class="slideshow-img" src="img/About3.webp" alt="" />
-        </div>
-        <p>
-          Terletak di
-          <span class="white-text">📍Desa Lemukih, Kabupaten Buleleng</span>,
-          Air Terjun Fiji adalah salah satu destinasi wisata alam yang masih
-          alami dan belum terlalu ramai dikunjungi wisatawan. Dikelilingi oleh
-          pepohonan tropis dan hamparan sawah yang hijau, perjalanan menuju
-          lokasi ini menawarkan pengalaman trekking yang menenangkan sekaligus
-          menantang <br />
-        </p>
-      </div>
 
-      <div class="home-desc">
-        <img src="img/About4.jpg" alt="" class="img-about" />
-        <p>
-          Sesampainya di lokasi, kamu akan disambut oleh tiga aliran air terjun
-          yang mengalir sejajar, menciptakan pemandangan luar biasa yang jarang
-          ditemukan di tempat lain di Bali. Suara gemuruh air yang jatuh dari
-          tebing, udara segar yang terasa murni, serta kejernihan airnya yang
-          menggoda membuat Air Terjun Fiji menjadi tempat yang sangat cocok
-          untuk healing, melepas penat, atau sekadar menikmati keindahan alam.
-          <br /><br />
-          Selain keindahannya, suasana tenang dan damai yang jauh dari
-          hiruk-pikuk kota membuat tempat ini sangat ideal untuk mengisi ulang
-          energi dan mendekatkan diri dengan alam. Tidak sedikit pula pengunjung
-          yang menyebut Fiji Waterfall sebagai “<span class="white-text"
-            >Surga Tersembunyi Bali Utara</span
-          >
-          ” karena pesonanya yang belum banyak diketahui orang.
-        </p>
-        <br />
-      </div>
-      <div class="home-desc">
-        <p>
-          Kami mengajak kamu untuk mengenal lebih jauh keindahan Air Terjun Fiji
-          melalui website ini — mulai dari informasi akses, galeri foto, hingga
-          tips perjalanan yang bermanfaat sebelum berkunjung. Selamat menikmati,
-          dan semoga halaman ini bisa menjadi panduan lengkap kamu untuk
-          menjelajahi salah satu tempat terindah di Bali.
-        </p>
-      </div>
+    <!-- Video Modal -->
+    <div class="modal" id="video-modal">
+        <span class="close-modal">&times;</span>
+        <video class="modal-content" id="modal-video" controls>
+            <source src="" type="video/mp4">
+        </video>
     </div>
-    <div class="wrapper2" id="gallery">
-      <div class="toph2-line">
-        <div class="line3"></div>
-        <h2 class="toph2" id="gallery-title">Gallery</h2>
-        <div class="line3"></div>
-      </div>
-      <!-- Menu Foto/Video -->
-      <div class="gallery-menu">
-        <button id="foto-btn" class="gallery-tab active">Foto</button>
-        <button id="video-btn" class="gallery-tab">Video</button>
-      </div>
-      <!-- Konten Foto -->
-      <div id="foto-content" class="gallery-content">
-        <div class="gallery" id="gallery-foto">
-          <div class="card card-s"><img src="img/About4.jpg" alt="" /></div>
-          <div class="card card-m"><img src="img/About5.webp" alt="" /></div>
-          <div class="card card-l"><img src="img/About6.webp" alt="" /></div>
-          <div class="card card-s"><img src="img/About1.webp" alt="" /></div>
-          <div class="card card-m"><img src="img/About2.webp" alt="" /></div>
-          <div class="card card-l"><img src="img/About3.webp" alt="" /></div>
-          <div class="card card-s"><img src="img/About7.jpg" alt="" /></div>
-          <div class="card card-m"><img src="img/About9.jpg" alt="" /></div>
-        </div>
-      </div>
-      <!-- Konten Video -->
-      <div id="video-content" class="gallery-content" style="display: none">
-        <div class="gallery" id="gallery-video">
-          <div class="card card-s video-item">
-            <video
-              width="100%"
-              height="100%"
-              controlsList="nodownload nofullscreen noremoteplayback disablepictureinpicture"
-              disablePictureInPicture
-              muted
-              playsinline
-              loop
-            >
-              <source src="video/video1.mp4" type="video/mp4" />
-              Browser Anda tidak mendukung video.
-            </video>
-          </div>
 
-          <div class="card card-m video-item">
-            <video
-              width="100%"
-              controlsList="nodownload nofullscreen noremoteplayback disablepictureinpicture"
-              disablePictureInPicture
-              muted
-              playsinline
-              loop
-            >
-              <source src="video/video1.mp4" type="video/mp4" />
-              Browser Anda tidak mendukung video.
-            </video>
-          </div>
-
-          <div class="card card-l video-item">
-            <video
-              width="100%"
-              height="100%"
-              controlsList="nodownload nofullscreen noremoteplayback disablepictureinpicture"
-              disablePictureInPicture
-              muted
-              playsinline
-              loop
-            >
-              <source src="video/video1.mp4" type="video/mp4" />
-              Browser Anda tidak mendukung video.
-            </video>
-          </div>
-
-          <div class="card card-s video-item">
-            <video
-              width="100%"
-              height="100%"
-              controlsList="nodownload nofullscreen noremoteplayback disablepictureinpicture"
-              disablePictureInPicture
-              muted
-              playsinline
-              loop
-            >
-              <source src="video/video1.mp4" type="video/mp4" />
-              Browser Anda tidak mendukung video.
-            </video>
-          </div>
-
-          <div class="card card-m video-item">
-            <video
-              width="100%"
-              height="100%"
-              controlsList="nodownload nofullscreen noremoteplayback disablepictureinpicture"
-              disablePictureInPicture
-              muted
-              playsinline
-              loop
-            >
-              <source src="video/video1.mp4" type="video/mp4" />
-              Browser Anda tidak mendukung video.
-            </video>
-          </div>
-
-          <div class="card card-l video-item">
-            <video
-              width="100%"
-              height="100%"
-              controlsList="nodownload nofullscreen noremoteplayback disablepictureinpicture"
-              disablePictureInPicture
-              muted
-              playsinline
-              loop
-            >
-              <source src="video/video1.mp4" type="video/mp4" />
-              Browser Anda tidak mendukung video.
-            </video>
-          </div>
-
-          <div class="card card-l video-item">
-            <video
-              width="100%"
-              height="100%"
-              controlsList="nodownload nofullscreen noremoteplayback disablepictureinpicture"
-              disablePictureInPicture
-              muted
-              playsinline
-              loop
-            >
-              <source src="video/video1.mp4" type="video/mp4" />
-              Browser Anda tidak mendukung video.
-            </video>
-          </div>
-
-          <div class="card card-m video-item">
-            <video
-              width="100%"
-              height="100%"
-              controlsList="nodownload nofullscreen noremoteplayback disablepictureinpicture"
-              disablePictureInPicture
-              muted
-              playsinline
-              loop
-            >
-              <source src="video/video1.mp4" type="video/mp4" />
-              Browser Anda tidak mendukung video.
-            </video>
-          </div>
-
-          <!-- Tambahkan video lain sesuai kebutuhan -->
-        </div>
-      </div>
-      <!-- Tombol Lihat Selengkapnya -->
-      <button id="show-more-btn" class="show-more-btn">
-        Lihat Selengkapnya
-      </button>
-    </div>
-    <div class="footer" id="contact">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.2212220801!2d115.17899034081489!3d-8.180455891884751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd18f921139190b%3A0xddf0c37a51e73ad8!2sFiji%20Waterfall%20Lemukih!5e0!3m2!1sen!2sid!4v1748028155898!5m2!1sen!2sid"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-
-      <div class="row-img-span">
-        <img src="img/information.png" alt="" class="information" />
-        <span>Information & Contact :</span>
-      </div>
-
-      <div class="row-img-span">
-        <img src="img/location.png" alt="" class="contact" />
-        <span>R59J+RJ, Sudaji, Sawan, Buleleng Regency, Bali</span>
-      </div>
-      <div class="row-img-span">
-        <img src="img/telephone.png" alt="" class="contact" />
-        <span>082266481833</span>
-      </div>
-      <div class="row-img-span">
-        <img src="img/email.png" alt="" class="contact" />
-        <span>lemukih-buleleng@gmail.com</span>
-      </div>
-
-      <div class="review-summary">
-        <div class="review-summary-header">
-          <span class="review-summary-star">★</span>
-          <span class="review-summary-score">4.1</span>
-          <span class="review-summary-max">/ 5.0</span>
-        </div>
-        <div class="review-bars">
-          <div class="review-bar-row">
-            <span class="review-bar-label">5 <span class="star">★</span></span>
-            <div class="review-bar">
-              <div class="review-bar-fill" style="width: 100%"></div>
-            </div>
-            <span class="review-bar-count">50</span>
-          </div>
-          <div class="review-bar-row">
-            <span class="review-bar-label">4 <span class="star">★</span></span>
-            <div class="review-bar">
-              <div class="review-bar-fill" style="width: 5%"></div>
-            </div>
-            <span class="review-bar-count">7</span>
-          </div>
-          <div class="review-bar-row">
-            <span class="review-bar-label">3 <span class="star">★</span></span>
-            <div class="review-bar">
-              <div class="review-bar-fill" style="width: 2%"></div>
-            </div>
-            <span class="review-bar-count">3</span>
-          </div>
-          <div class="review-bar-row">
-            <span class="review-bar-label">2 <span class="star">★</span></span>
-            <div class="review-bar">
-              <div class="review-bar-fill" style="width: 1%"></div>
-            </div>
-            <span class="review-bar-count">1</span>
-          </div>
-          <div class="review-bar-row">
-            <span class="review-bar-label">1 <span class="star">★</span></span>
-            <div class="review-bar">
-              <div class="review-bar-fill" style="width: 10%"></div>
-            </div>
-            <span class="review-bar-count">15</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="review-list">
-        <div class="review-item">
-          <div class="review-item-header">
-            <span class="review-user">Herik Andika</span>
-            <span class="review-stars">★★★★★</span>
-          </div>
-          <div class="review-item-text">
-            Tempatnya Bagus,, rekomended,, karena dalam satu tempat ada beberapa
-            waterfall sekaligus dan bagus2,, Tp ada beberapa oknum yg saya tidak
-            suka, kita sampainya dsana malah di bilang harus ada pendamping dan
-            diminta harga yg cukup besar. Dengan 1 pendamping Diminta 500rb
-            untuk 4 orang wisata lokal. Ahirnya kita ke tempat lain dan tanya2
-            ama yg ada di sekitar,, Cuma bayar gojek menuju lokasi cuma 20rb/per
-            orang + tiket 20rb/orang. Sangat disayangkan masih ada oknum begini
-            yg bikin wisatawan kapok untuk berwisata ksana. Untuk petugas yg
-            jaga di bawah, jempoL bgt, baik dan ramah banget,
-          </div>
-        </div>
-        <div class="review-item">
-          <div class="review-item-header">
-            <span class="review-user">Viktoriya Nischuk</span>
-            <span class="review-stars">★★★★★</span>
-          </div>
-          <div class="review-item-text">
-            Beautiful and strong waterfall - it’s actually tree waterfalls
-            really close to each other. They look magical!
-          </div>
-        </div>
-        <div class="review-item">
-          <div class="review-item-header">
-            <span class="review-user">Anton Palichev</span>
-            <span class="review-stars">★★★★★</span>
-          </div>
-          <div class="review-item-text">
-            The most beautiful waterfall on Bali! Stay for a night at local
-            hotel/hostel and get a tickets (protection) from them. Simple
-          </div>
-        </div>
-      </div>
-      <p>&copy; 2024 Air Terjun Fiji. All rights reserved.</p>
-    </div>
     <script src="script.js"></script>
-  </body>
+</body>
 </html>

@@ -1,327 +1,300 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Animasi pop-up untuk .home-desc, .wrapper h2, #gallery-title
-  const targets = document.querySelectorAll(
-    ".home-desc, .wrapper h2, #gallery-title, .wrapper, .wrappper2 gallery"
-  );
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("pop-up-animate");
-        }
-      });
-    },
-    { threshold: 0.3 }
-  );
+  // Mobile Navigation - Perbaikan dengan overlay
+  const navToggle = document.querySelector(".nav-toggle");
+  const navLinks = document.querySelector(".nav-links");
+  const navItems = document.querySelectorAll(".nav-link");
+  // Overlay untuk mobile menu
+  let menuOverlay = document.querySelector(".menu-overlay");
+  if (!menuOverlay) {
+    menuOverlay = document.createElement("div");
+    menuOverlay.classList.add("menu-overlay");
+    document.body.appendChild(menuOverlay);
+  }
 
-  targets.forEach((target) => {
-    observer.observe(target);
+  navToggle.addEventListener("click", function () {
+    this.classList.toggle("active");
+    navLinks.classList.toggle("active");
+    menuOverlay.classList.toggle("active");
+    document.body.style.overflow = navLinks.classList.contains("active")
+      ? "hidden"
+      : "auto";
   });
 
-  // Tab Foto/Video Gallery
-  const fotoBtn = document.getElementById("foto-btn");
-  const videoBtn = document.getElementById("video-btn");
-  const fotoContent = document.getElementById("foto-content");
-  const videoContent = document.getElementById("video-content");
-  const showMoreBtn = document.getElementById("show-more-btn");
-  const fotoItems = document.querySelectorAll("#gallery-foto .card");
-  const videoItems = document.querySelectorAll("#gallery-video .card");
+  menuOverlay.addEventListener("click", function () {
+    navToggle.classList.remove("active");
+    navLinks.classList.remove("active");
+    this.classList.remove("active");
+    document.body.style.overflow = "auto";
+  });
 
-  let activeTab = "foto";
-  let fotoShowingAll = false;
-  let videoShowingAll = false;
-
-  // Fungsi untuk menentukan jumlah card awal
-  function getShowCount() {
-    if (window.innerWidth <= 449) {
-      return 3;
-    } else if (window.innerWidth <= 767) {
-      return 3;
-    } else if (window.innerWidth <= 1080) {
-      return 4;
-    } else {
-      return 3;
-    }
-  }
-
-  function showInitialFoto() {
-    const count = getShowCount();
-    fotoItems.forEach((card, idx) => {
-      card.classList.toggle("hidden-card", idx >= count);
-    });
-
-    const gallery = document.getElementById("gallery-foto");
-    gallery.classList.add("gallery-initial");
-    gallery.classList.remove("show-all");
-
-    if (window.innerWidth <= 449) {
-      gallery.style.gridTemplateColumns = "1fr";
-    } else if (window.innerWidth <= 767) {
-      gallery.style.gridTemplateColumns = "repeat(2, 1fr)";
-    } else if (window.innerWidth <= 1080) {
-      gallery.style.gridTemplateColumns = "repeat(2, 1fr)";
-    } else {
-      gallery.style.gridTemplateColumns =
-        "repeat(auto-fill, minmax(300px, 1fr))";
-    }
-
-    fotoShowingAll = false;
-    if (showMoreBtn) showMoreBtn.textContent = "Lihat Selengkapnya";
-  }
-
-  function showAllFoto() {
-    fotoItems.forEach((card) => card.classList.remove("hidden-card"));
-    const gallery = document.getElementById("gallery-foto");
-    gallery.classList.remove("gallery-initial");
-    gallery.classList.add("show-all");
-    gallery.style.gridTemplateColumns = "";
-    fotoShowingAll = true;
-    if (showMoreBtn) showMoreBtn.textContent = "Tutup";
-
-    // Tambahkan event listener untuk card
-    fotoItems.forEach((card) => {
-      card.addEventListener("click", function (e) {
-        e.stopPropagation(); // Mencegah event bubbling
-      });
-    });
-  }
-
-  function showInitialVideo() {
-    const count = getShowCount();
-    videoItems.forEach((card, idx) => {
-      card.classList.toggle("hidden-card", idx >= count);
-    });
-
-    const gallery = document.getElementById("gallery-video");
-    gallery.classList.add("gallery-initial");
-    gallery.classList.remove("show-all");
-
-    if (window.innerWidth <= 449) {
-      gallery.style.gridTemplateColumns = "1fr";
-    } else if (window.innerWidth <= 767) {
-      gallery.style.gridTemplateColumns = "repeat(2, 1fr)";
-    } else if (window.innerWidth <= 1080) {
-      gallery.style.gridTemplateColumns = "repeat(2, 1fr)";
-    } else {
-      gallery.style.gridTemplateColumns =
-        "repeat(auto-fill, minmax(300px, 1fr))";
-    }
-
-    videoShowingAll = false;
-    if (showMoreBtn) showMoreBtn.textContent = "Lihat Selengkapnya";
-  }
-
-  function showAllVideo() {
-    videoItems.forEach((card) => card.classList.remove("hidden-card"));
-    const gallery = document.getElementById("gallery-video");
-    gallery.classList.remove("gallery-initial");
-    gallery.classList.add("show-all");
-    gallery.style.gridTemplateColumns = "";
-    videoShowingAll = true;
-    if (showMoreBtn) showMoreBtn.textContent = "Tutup";
-
-    // Tambahkan event listener untuk card
-    videoItems.forEach((card) => {
-      card.addEventListener("click", function (e) {
-        e.stopPropagation(); // Mencegah event bubbling
-      });
-    });
-  }
-
-  if (fotoBtn && videoBtn && fotoContent && videoContent) {
-    fotoBtn.addEventListener("click", function () {
-      fotoBtn.classList.add("active");
-      videoBtn.classList.remove("active");
-      fotoContent.style.display = "block";
-      videoContent.style.display = "none";
-      activeTab = "foto";
-      fotoShowingAll ? showAllFoto() : showInitialFoto();
-    });
-
-    videoBtn.addEventListener("click", function () {
-      videoBtn.classList.add("active");
-      fotoBtn.classList.remove("active");
-      fotoContent.style.display = "none";
-      videoContent.style.display = "block";
-      activeTab = "video";
-      videoShowingAll ? showAllVideo() : showInitialVideo();
-    });
-  }
-
-  // FIX: Tombol show more/tutup hanya aktif jika klik langsung pada tombol
-  // Ganti bagian kode yang menangani showMoreBtn dengan ini:
-  if (showMoreBtn) {
-    showMoreBtn.addEventListener("click", function (e) {
-      // Hanya respon jika tombol itu sendiri yang diklik
-      if (e.target !== this) return;
-
-      if (activeTab === "foto") {
-        fotoShowingAll = !fotoShowingAll;
-        if (fotoShowingAll) {
-          showAllFoto();
-        } else {
-          showInitialFoto();
-        }
-      } else {
-        videoShowingAll = !videoShowingAll;
-        if (videoShowingAll) {
-          showAllVideo();
-        } else {
-          showInitialVideo();
-        }
-      }
-    });
-
-    // Tambahkan event listener untuk mencegah closing saat scroll
-    let isScrolling;
-    window.addEventListener(
-      "scroll",
-      function () {
-        // Clear timeout saat scroll terjadi
-        clearTimeout(isScrolling);
-
-        // Set timeout untuk menunggu scroll selesai
-        isScrolling = setTimeout(function () {
-          // Cek posisi scroll untuk memastikan tidak menutup galeri
-          if (activeTab === "foto" && fotoShowingAll) {
-            // Tetap buka galeri foto
-          } else if (activeTab === "video" && videoShowingAll) {
-            // Tetap buka galeri video
-          }
-        }, 100);
-      },
-      false
-    );
-  }
-
-  // Autoplay video saat hover, pause saat mouse keluar
-  document.querySelectorAll("#gallery-video video").forEach(function (video) {
-    video.addEventListener("mouseenter", function () {
-      video.play();
-    });
-    video.addEventListener("mouseleave", function () {
-      video.pause();
-      video.currentTime = 0;
+  navItems.forEach((item) => {
+    item.addEventListener("click", function () {
+      navToggle.classList.remove("active");
+      navLinks.classList.remove("active");
+      menuOverlay.classList.remove("active");
+      document.body.style.overflow = "auto";
     });
   });
 
-  // Event listener untuk resize agar jumlah card awal dan grid layout menyesuaikan layar
-  window.addEventListener("resize", function () {
-    if (activeTab === "foto") {
-      if (!fotoShowingAll) showInitialFoto();
+  // Sticky Header
+  const header = document.querySelector(".header");
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 100) {
+      header.classList.add("scrolled");
     } else {
-      if (!videoShowingAll) showInitialVideo();
+      header.classList.remove("scrolled");
     }
   });
 
-  // Inisialisasi tampilan awal
-  showInitialFoto();
-  showInitialVideo();
-  if (fotoContent) fotoContent.style.display = "block";
-  if (videoContent) videoContent.style.display = "none";
-
-  // Slideshow untuk .home-desc di mobile
-  function startHomeDescSlideshow() {
-    if (window.innerWidth > 768) {
-      document.querySelectorAll(".home-desc .slideshow-img").forEach((img) => {
-        img.classList.add("active");
-      });
-      return;
-    }
-    const slides = document.querySelectorAll(".home-desc .slideshow-img");
-    if (slides.length <= 1) return;
-    let idx = 0;
-    slides.forEach((img, i) => img.classList.toggle("active", i === idx));
-    if (window.homeDescInterval) clearInterval(window.homeDescInterval);
-    window.homeDescInterval = setInterval(() => {
-      slides[idx].classList.remove("active");
-      idx = (idx + 1) % slides.length;
-      slides[idx].classList.add("active");
-    }, 2500);
-  }
-  startHomeDescSlideshow();
-  window.addEventListener("resize", startHomeDescSlideshow);
-
-  // Scroll Spy: Highlight nav menu sesuai section yang sedang tampil
-  function setActiveNav() {
-    const sections = [
-      { id: "home", nav: "Home" },
-      { id: "about", nav: "About" },
-      { id: "gallery", nav: "Gallery" }, // Pastikan ID sesuai dengan HTML
-      { id: "contact", nav: "Information & Contact" },
-    ];
-
-    let scrollPos = window.scrollY + 100; // offset navbar
-    let active = "Home";
-
-    for (let i = 0; i < sections.length; i++) {
-      const el = document.getElementById(sections[i].id);
-      if (!el) continue;
-
-      const elTop = el.offsetTop;
-      const elHeight = el.offsetHeight;
-      const elBottom = elTop + elHeight;
-
-      // Perhitungan yang lebih akurat dengan threshold
-      if (scrollPos >= elTop - 150 && scrollPos <= elBottom - 100) {
-        active = sections[i].nav;
-        break;
-      }
-    }
-
-    document.querySelectorAll(".container-nav a").forEach((a) => {
-      a.classList.toggle("active", a.textContent.trim() === active);
-    });
-  }
-  window.addEventListener("scroll", setActiveNav);
-  window.addEventListener("DOMContentLoaded", setActiveNav);
-
-  // Smooth scroll untuk nav
-  document.querySelectorAll(".container-nav a").forEach((a) => {
-    a.addEventListener("click", function (e) {
-      const targetId = this.getAttribute("href").substring(1);
-      if (targetId && document.getElementById(targetId)) {
+  // Smooth Scrolling for Navigation
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const targetId = this.getAttribute("href");
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
         e.preventDefault();
-        const target = document.getElementById(targetId);
-        const offset = 100; // Sesuaikan dengan tinggi navbar
-        const targetPosition =
-          target.getBoundingClientRect().top + window.pageYOffset - offset;
-
         window.scrollTo({
-          top: targetPosition,
+          top: targetElement.offsetTop - 80,
           behavior: "smooth",
         });
       }
     });
   });
 
-  // Hamburger menu logic
-  const navToggle = document.querySelector(".nav-toggle");
-  const navLinks = document.querySelector(".nav-links");
-  if (navToggle && navLinks) {
-    navToggle.addEventListener("click", function () {
-      navLinks.classList.toggle("show");
+  // Navbar Active State on Scroll
+  const sections = document.querySelectorAll("section");
+  function updateActiveNav() {
+    let current = "";
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (pageYOffset >= sectionTop - 120) {
+        current = section.getAttribute("id");
+      }
     });
-    navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        if (window.innerWidth <= 768) {
-          navLinks.classList.remove("show");
-        }
-      });
-    });
-  }
-
-  // Smooth scroll untuk tombol input type button
-  const jelajahBtn = document.querySelector(
-    'input[type="button"][value="Jelajahi Sekarang"]'
-  );
-  if (jelajahBtn) {
-    jelajahBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      const target = document.getElementById("about");
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+    navItems.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("active");
       }
     });
   }
+  window.addEventListener("load", updateActiveNav);
+  window.addEventListener("scroll", updateActiveNav);
+
+  // About Image Slider
+  const aboutImages = document.querySelectorAll(".image-slider img");
+  let currentImageIndex = 0;
+  function showNextImage() {
+    aboutImages[currentImageIndex].classList.remove("active");
+    currentImageIndex = (currentImageIndex + 1) % aboutImages.length;
+    aboutImages[currentImageIndex].classList.add("active");
+  }
+  if (aboutImages.length > 1) {
+    setInterval(showNextImage, 3000);
+  }
+
+  // Gallery Tabs
+  const tabButtons = document.querySelectorAll(".tab-btn");
+  const tabContents = document.querySelectorAll(".tab-content");
+  tabButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const tabId = this.getAttribute("data-tab");
+      tabButtons.forEach((btn) => btn.classList.remove("active"));
+      tabContents.forEach((content) => content.classList.remove("active"));
+      this.classList.add("active");
+      document.getElementById(tabId).classList.add("active");
+    });
+  });
+
+  // Image Gallery Modal
+  const galleryItems = document.querySelectorAll(
+    ".gallery-item:not(.video-item)"
+  );
+  const imageModal = document.getElementById("image-modal");
+  const modalImage = document.getElementById("modal-image");
+  galleryItems.forEach((item) => {
+    item.addEventListener("click", function () {
+      const imgSrc = this.querySelector("img").getAttribute("src");
+      modalImage.setAttribute("src", imgSrc);
+      imageModal.style.display = "block";
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  // Video Gallery Modal
+  const videoItems = document.querySelectorAll(".video-item");
+  const videoModal = document.getElementById("video-modal");
+  const modalVideo = document.getElementById("modal-video");
+  videoItems.forEach((item) => {
+    item.addEventListener("click", function () {
+      // Cari source video
+      let videoSrc = "";
+      const videoTag = this.querySelector("video");
+      if (videoTag) {
+        const sourceTag = videoTag.querySelector("source");
+        if (sourceTag) {
+          videoSrc = sourceTag.getAttribute("src");
+        } else {
+          videoSrc = videoTag.getAttribute("src");
+        }
+      }
+      modalVideo.setAttribute("src", videoSrc);
+      videoModal.style.display = "block";
+      modalVideo.play();
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  // Close Modals
+  const closeButtons = document.querySelectorAll(".close-modal");
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const modal = this.closest(".modal");
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+      if (modal === videoModal) {
+        modalVideo.pause();
+        modalVideo.currentTime = 0;
+      }
+    });
+  });
+
+  // Close modal when clicking outside content
+  window.addEventListener("click", function (e) {
+    if (e.target === imageModal) {
+      imageModal.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+    if (e.target === videoModal) {
+      videoModal.style.display = "none";
+      modalVideo.pause();
+      modalVideo.currentTime = 0;
+      document.body.style.overflow = "auto";
+    }
+  });
+
+  // Testimonial Slider
+  const testimonialCards = document.querySelectorAll(".testimonial-card");
+  const dots = document.querySelectorAll(".dot");
+  const prevBtn = document.querySelector(".prev-btn");
+  const nextBtn = document.querySelector(".next-btn");
+  let currentTestimonial = 0;
+  function showTestimonial(index) {
+    testimonialCards.forEach((card) => card.classList.remove("active"));
+    dots.forEach((dot) => dot.classList.remove("active"));
+    testimonialCards[index].classList.add("active");
+    dots[index].classList.add("active");
+    currentTestimonial = index;
+  }
+  function nextTestimonial() {
+    let nextIndex = (currentTestimonial + 1) % testimonialCards.length;
+    showTestimonial(nextIndex);
+  }
+  function prevTestimonial() {
+    let prevIndex =
+      (currentTestimonial - 1 + testimonialCards.length) %
+      testimonialCards.length;
+    showTestimonial(prevIndex);
+  }
+  nextBtn.addEventListener("click", nextTestimonial);
+  prevBtn.addEventListener("click", prevTestimonial);
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => showTestimonial(index));
+  });
+  if (testimonialCards.length > 1) {
+    setInterval(nextTestimonial, 5000);
+  }
+
+  // Load More Button for Gallery - Perbaikan untuk menangani foto dan video
+const loadMoreBtn = document.getElementById("load-more");
+const galleryTabs = document.querySelectorAll(".tab-btn");
+let currentTab = "foto"; // Default tab
+
+// Update current tab ketika tab diubah
+galleryTabs.forEach(tab => {
+    tab.addEventListener("click", function() {
+        currentTab = this.getAttribute("data-tab");
+    });
+});
+
+// Fungsi untuk memuat lebih banyak item
+function loadMoreItems() {
+    const currentTabContent = document.querySelector(`.tab-content.active`);
+    const hiddenItems = currentTabContent.querySelectorAll(".gallery-item[style='display: none;']");
+    
+    // Tampilkan item berikutnya (maksimal itemsPerLoad)
+    let itemsToShow = Math.min(3, hiddenItems.length);
+    for (let i = 0; i < itemsToShow; i++) {
+        hiddenItems[i].style.display = "block";
+        hiddenItems[i].style.opacity = "0";
+        hiddenItems[i].style.transform = "translateY(20px)";
+        
+        setTimeout(() => {
+            hiddenItems[i].style.opacity = "1";
+            hiddenItems[i].style.transform = "translateY(0)";
+            hiddenItems[i].style.transition = "opacity 0.3s ease, transform 0.3s ease";
+        }, 50);
+    }
+    
+    // Sembunyikan tombol jika tidak ada item tersembunyi lagi
+    const remainingHidden = currentTabContent.querySelectorAll(".gallery-item[style='display: none;']");
+    if (remainingHidden.length === 0) {
+        loadMoreBtn.style.display = "none";
+    }
+}
+
+// Fungsi untuk menyembunyikan item ekstra
+function hideExtraItems() {
+    const tabContents = document.querySelectorAll(".tab-content");
+    
+    tabContents.forEach(tab => {
+        const allItems = tab.querySelectorAll(".gallery-item");
+        const initialVisible = 6; // Item yang terlihat awal
+        
+        allItems.forEach((item, index) => {
+            if (index >= initialVisible) {
+                item.style.display = "none";
+            } else {
+                item.style.display = "block";
+            }
+        });
+    });
+    
+    // Periksa apakah perlu menampilkan tombol load more
+    const activeTab = document.querySelector(".tab-content.active");
+    const hiddenItems = activeTab.querySelectorAll(".gallery-item[style='display: none;']");
+    
+    if (hiddenItems.length > 0) {
+        loadMoreBtn.style.display = "block";
+    } else {
+        loadMoreBtn.style.display = "none";
+    }
+}
+
+if (loadMoreBtn) {
+    hideExtraItems();
+    loadMoreBtn.addEventListener("click", loadMoreItems);
+}
+
+// Auto-play videos on hover - Perbaikan
+const videoItemsAll = document.querySelectorAll(".video-item video");
+videoItemsAll.forEach((video) => {
+    // Set atribut boolean dengan cara yang benar
+    video.muted = true;
+    video.playsInline = true;
+    video.loop = true;
+    // Pastikan tidak ada controls
+    video.removeAttribute("controls");
+
+    // Hover event pada parent .video-item
+    const videoItem = video.closest(".video-item");
+    videoItem.addEventListener("mouseenter", function() {
+        video.play().catch(() => {});
+    });
+    videoItem.addEventListener("mouseleave", function() {
+        video.pause();
+        video.currentTime = 0;
+    });
+});
 });
